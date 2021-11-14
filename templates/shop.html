@@ -1,0 +1,42 @@
+{% extends 'menu.html'%} <!--導入menu模板 -->
+{% block title %} 產品列表 {% endblock%}
+
+    {% block content %}
+
+    <div class='search'>
+        <form action='' method='get'>
+            商品名稱:<input type='text' name='product' /><p></p>
+            價格:<input type='text' name='startp' />
+                至 <input type='text' name='endp' /><p></p>
+            <input type='submit' value='查詢' />
+        </form>
+    </div>
+
+    <div class='info'>
+    {% for p in shop_list %}
+    <div class='infoarea'>
+        <ul>
+            <li>商城:{{p.shop}}</li>
+            <li>商品名稱:{{p.title}}</li>
+            <li><a href="{{ p.link }}" target="_blank"><img src="{{p.img_url}}" width="150px" /></a></li>
+            <li>價格:{{p.price}}</li>
+        </ul>
+    </div>
+    {% endfor %}
+    </div>
+
+    <div class='pagination'>
+        <span class='page_link'>
+            {% if shop_list.has_previous %} <!-- 假如有'上一頁'存在 -->
+            <a href='?page={{ shop.list.previous_page_number }}&product={{ product }}&startp={{ startp }}&endp={{ endp }}'>上一頁</a> <!-- 顯示上一頁連結 -->
+            {% endif %}
+
+        <span class='current'>
+            頁數:{{ shop_list.number }} of {{ shop_list.paginator.num_pages }} <!--目前所在頁數/總頁數 -->
+        </span>
+        {% if shop_list.has_next %}
+            <a href='?page={{ shop_list.next_page_number }}&product={{ product }}&startp={{ startp }}&endp={{ endp }}'>下一頁</a>
+        {% endif %}
+        </span>
+    </div>
+    {% endblock%}

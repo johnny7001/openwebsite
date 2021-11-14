@@ -1,0 +1,35 @@
+<!DOCTYPE>
+<html>
+<head>
+        <meta charset="utf-8">
+        <title>
+            {% block title%} {% endblock%}
+        </title>
+        <style>
+            {% block style%} {% endblock %}
+        </style>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+       <link rel='stylesheet' href="/static/css/index.css" />
+</head>
+<body>
+    <div id="menu"> <!--此處為header設計 -->
+        <a href="/"><img src='/static/img/logo.png' align="left"></a>
+        <ul>
+            <li><a href='/shop/'>產品</a></li>
+            <li><a href='/food/'>好食券</a></li>
+            <li><a href="/travel/">國旅券</a></li>
+            <li><a href="/food/foodpanda">foodpanda</a></li>
+            <li><a href="/sakamichi/">影片</a></li>
+            <li><a href='/message/'>聯絡我們</a></li>
+        </ul>
+    </div>
+    {% block content%} {% endblock %} <!--此處放置內容 -->
+    <div id='id_footer'> <!--此處為footer設計 -->
+        <span>清起來股份有限公司</span>
+    </div>
+</body>
+
+
+
+</html>
+

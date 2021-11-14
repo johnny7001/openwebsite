@@ -1,0 +1,48 @@
+{% extends 'menuTest.html'%} <!--導入menu模板 -->
+{% block title %} 爽啊刺啊 {% endblock %}
+
+    {% block content %}
+
+
+        <font style="font-size:50px;" >國旅券最新相關</font>
+        <p></p>
+<!--        <a href="/travel/" style="font-size:30px;height:300px;">立即查詢!!</a>-->
+    <font style="font-size:50px;color:#ff5722;" >KLOOK專區</font>
+    <a href="https://www.klook.com/zh-TW/?gclsrc=aw.ds&gclid=CjwKCAjwz5iMBhAEEiwAMEAwGKzdGP4vsLz2Qg4cy_uIIOzWuddkdcLC7cS0E0hWetuz0R7oZb5UKxoCKMkQAvD_BwE"><img src='/static/img/klook_logo.png' width="50px" height="50px" style="padding-down:10px;"></a>
+    <a href='/travel/' style="font-size:30px;text-align:right;padding-left:70%">查看更多</a>
+    <hr style="margin-top:1px;">
+        <div class='indexinfo'>
+            {% for k in journey_list %}
+            <div class='infoarea'>
+                <ul>
+                    <li>{{k.title}}</li>
+                    <li><a href="{{ k.data_url }}" target="_blank"><img src="{{k.img_url}}" /></a></li>
+                    <li style="color:red;">評價:{{k.star}}</li>
+                    <li>價格:{{k.selling_price}}</li>
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    <p></p>
+    <hr>
+        <font style="font-size:50px;color:#26bec9;" >KKday專區</font>
+    <a href="https://www.kkday.com/zh-tw"><img src='/static/img/kkdaylogo.jpg' width="40px" height="40px" style="padding-down:10px;"></a>
+    <a href='/travel/kkday' style="font-size:30px;text-align:right;padding-left:70%">查看更多</a>
+
+    <hr style="margin-top:1px;">
+        <div class='indexinfo'>
+            {% for kd in kkday_list %}
+            <div class='infoarea'>
+                <ul>
+                    <li>{{kd.title}}</li>
+                    <li><a href="{{ kd.data_url }}" target="_blank"><img src="{{kd.img_url}}" /></a></li>
+                    <li style="color:red;">評價:{{kd.star}}</li>
+                    <li>價格:{{kd.selling_price}}</li>
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+
+
+        {% endblock %}
+

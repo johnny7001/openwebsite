@@ -1,0 +1,126 @@
+{% extends 'menuTest.html'%} <!--導入menu模板 -->
+{% block title %} 好食券相關 {% endblock%}
+{% block style %}
+
+
+#container{
+	margin: 0 auto;
+    padding: 0 25px;
+    max-width: 1220px;
+
+}
+
+.main{
+	padding: 1.5em 0;
+
+
+
+}
+.msg{
+	font-size: 1.75em;
+    padding: 0;
+    margin: 2em 0 0;
+}
+.title{
+    padding-bottom: 6px;
+    line-height: 32px;
+}
+
+input{
+	width:300px;
+	height:35px;
+}
+
+.word{
+	float: left;
+}
+
+.field-box{
+	max-width: 530px;
+	margin-left: 6em;
+}
+
+.field{
+	    display: block;
+    width: 100%;
+    height: 38px;
+    padding: 0 0.5em;
+    border: 1px solid #ddd;
+    background: #fff;
+    margin-bottom: 0.3em;
+}
+
+textarea.field {
+    height: auto;
+    padding: 0.25em 0.5em;
+}
+.send{
+	padding: 4em 0;
+	letter-spacing: 1.5em;
+	text-align:center;
+	width:500px;
+}
+
+{% endblock %}
+
+<script>
+    function sendOk(){
+        alert("我們已收到留言");
+        }
+</script>
+
+
+
+
+
+
+
+
+
+{% block content %}
+
+    <div id='container'>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="msg">
+            <p>問題諮詢</p>
+        </div>
+
+        <div class="title">
+            <span class="word">主旨:</span>
+            <div class="field-box">
+                <input type="text" name="title" required class="field" /> <!-- required = 必填 -->
+            </div>
+        </div>
+
+        <div class="title">
+            <span class="word">Email:</span>
+            <div class="field-box">
+                <input type="text" name="email" required class="field" /> <!-- required = 必填 -->
+            </div>
+        </div>
+
+        <div class="title">
+            <span class="word">內容:</span>
+            <div class="field-box">
+                <textarea name="content" rows="5" required class="field"></textarea>
+            </div>
+        </div>
+
+        <div class="send"> <!--提交內容 -->
+            <button type="submit" style="width:150px; height:70px; background-image:url('/static/img/send.png');border:none;background-color:Transparent" onclick="sendOk()">送出</button>
+        </div>
+    </form>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

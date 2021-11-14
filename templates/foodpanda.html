@@ -1,0 +1,43 @@
+{% extends 'menuTest.html'%} <!--導入menu模板 -->
+{% block title %} Foodpanda美食 {% endblock%}
+
+    {% block content %}
+    
+    <div class='search'>
+        <form action='' method='get'>
+            餐廳:<input type='text' name='panda' /><p></p>
+            <input type='submit' value='查詢' />
+        </form>
+
+    </div>
+    <div class='info'>
+    {% for p in rest_list %}
+        <div class='infoarea'>
+            <ul>
+                <li>餐廳:{{p.shopname}}</li>
+                <p></p>
+                <li style="color:red;">評分:{{p.star}}</li>
+                <li><a href="{{ p.shopurl }}" target="_blank"><img src="{{p.img}}" width="150px" /></a></li>
+                <li>簡介:{{p.content}}</li>
+                <li>標籤:{{p.tag}}</li>
+                <li>運費:{{p.delivery}}</li>
+            </ul>
+        </div>
+    {% endfor %}
+    </div>
+    
+    <div class='pagination'>
+        <span class='page_link'>
+            {% if rest_list.has_previous %} <!-- 假如有'上一頁'存在 -->
+            <a href='?page={{ rest_list.previous_page_number }}&panda={{ panda }}'>上一頁</a> <!-- 顯示上一頁連結 -->
+            {% endif %}
+
+        <span class='current'>
+            頁數:{{ rest_list.number }} of {{ rest_list.paginator.num_pages }} <!--目前所在頁數/總頁數 -->
+        </span>
+        {% if rest_list.has_next %}
+            <a href='?page={{ rest_list.next_page_number }}&panda={{ panda }}'>下一頁</a>
+        {% endif %}
+        </span>
+    </div>
+    {% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'menuTest.html'%} <!--導入menu模板 -->
+{% block title %} Youtube串接影片 {% endblock%}
+
+    {% block content %}
+    <div class='sakulogo'>
+        <img src='/static/img/N_LOGO_Y.jpg' style="width:180px;
+                                                   background-color: #FEA8DF;">
+    </div>
+
+<!--    <div class='search'>-->
+<!--        <form action='' method='get'>-->
+<!--            成員名 : <input type='text' name='product' /><p></p>-->
+<!--            <input type='submit', value='查詢' />-->
+<!--        </form>-->
+<!--    -->
+<!--    </div>-->
+
+
+
+
+    <div class='info'>
+<!--    <div class='info'>-->
+    {% for p in mv_list %}
+    <div class='infoarea'>
+        <ul>
+            <li style="font-size:20px;">影片名稱:{{ p.title }}</li>
+            <li style="font-size:20px;"><a href="{{ p.videourl }}" target="_blank"><img src="{{ p.imgurl }}" width="1000px" /></a></li>
+            <li style="font-size:20px;">觀看次數:{{ p.viewcount }}</li>
+            <p></p>
+            <li style="font-size:20px;">喜歡:{{ p.likecount }}</li>
+            <p></p>
+            <li style="font-size:20px;">發布日期:{{ p.published_date }}</li>
+
+        </ul>
+    </div>
+    {% endfor %}
+    </div>
+    <div class='pagination'>
+        <span class='page_link'>
+            {% if mv_list.has_previous %} <!-- 假如有'上一頁'存在 -->
+            <a href='?page={{ shop.list.previous_page_number }}'>上一頁</a> <!-- 顯示上一頁連結 -->
+            {% endif %}
+
+        <span class='current'>
+            頁數:{{ mv_list.number }} of {{ mv_list.paginator.num_pages }} <!--目前所在頁數/總頁數 -->
+        </span>
+        {% if mv_list.has_next %}
+            <a href='?page={{ mv_list.next_page_number }}'>下一頁</a>
+        {% endif %}
+        </span>
+    </div>
+    {% endblock %}

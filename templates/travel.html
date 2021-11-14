@@ -1,0 +1,58 @@
+{% extends 'menuTest.html'%}<!--導入menu模板 -->
+{% block title %} KLOOK國旅券 {% endblock%}
+
+    {% block content %}
+        <font style="font-size:50px;color:#ff5722;" >KLOOK專區</font>
+    <a href="https://www.klook.com/zh-TW/?gclsrc=aw.ds&gclid=CjwKCAjwz5iMBhAEEiwAMEAwGKzdGP4vsLz2Qg4cy_uIIOzWuddkdcLC7cS0E0hWetuz0R7oZb5UKxoCKMkQAvD_BwE"><img src='/static/img/klook_logo.png' width="50px" height="50px" style="padding-down:10px;"></a>
+    <div class='search'>
+        <form action='' method='get'>
+            活動名稱: <input type='text' name='journey' /><p></p>
+            價格: <input type='text' name='startp' />
+                至 <input type='text' name='endp' /><p></p>
+            <input type='submit' value='查詢' />
+        </form>
+    </div>
+
+
+
+
+    <div class='info'>
+    {% for p in journey_list %}
+    <div class='infoarea'>
+        <ul>
+            <li>活動:{{p.title}}</li>
+            <li><a href="{{ p.data_url }}" target="_blank"><img src="{{p.img_url}}" width="150px" /></a></li>
+            {% if p.star == None %} <!--假如沒有評分就不顯示 -->
+            {% else%}
+            <li style="color:red;">評分:{{p.star}}</li>
+            {% endif %}
+            <p></p>
+            {% if p.market_price == 0.0 %} <!--假如沒有市價就不顯示 -->
+            {% else%}
+                <li>市價:{{p.market_price}}</li>
+            {% endif %}
+            <li style="color:green;">售價:{{p.selling_price}}</li>
+        </ul>
+    </div>
+    {% endfor %}
+    </div>
+    
+    <div class='pagination'>
+        <span class='page_link'>
+            {% if journey_list.has_previous %} <!-- 假如有'上一頁'存在 -->
+            <a href='?page={{ journey_list.previous_page_number }}&journey={{ journey }}&startp={{ startp }}&endp={{ endp }}&select_city={{ s_city }}'>上一頁</a> <!-- 顯示上一頁連結 -->
+            {% endif %}
+
+        <span class='current'>
+            {% for i in journey_list.paginator.page_num_range %}
+                <a href="?page={{ i }}&journey={{ journey }}&startp={{ startp }}&endp={{ endp }}&select_city={{ s_city }}">{{ i }}</a>
+            {% endfor %}
+
+        </span>
+        {% if journey_list.has_next %}
+            <a href='?page={{ journey_list.next_page_number }}&journey={{ journey }}&startp={{ startp }}&endp={{ endp }}&select_city={{ s_city }}'>下一頁</a>
+        {% endif %}
+        </span>
+            <font style="text-align:right;"> 頁數:{{ journey_list.number }} of {{ journey_list.paginator.num_pages }} <!--目前所在頁數/總頁數 --></font>
+    </div>
+    {% endblock%}

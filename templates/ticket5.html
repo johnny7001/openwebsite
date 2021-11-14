@@ -1,0 +1,29 @@
+{% extends 'menuTest.html'%}<!--導入menu模板 -->
+{% block title %} KLOOK國旅券 {% endblock%}
+
+    {% block content %}
+    <img src="data:image/png;base64,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"
+        align="left"/>
+
+
+
+    <h3><font align="right">超絕可愛  守屋麗奈幫你抽加碼券</font></h3>
+    <p><h3>請輸入身分證末三碼: </h3><p>
+    <form action="" method="get">
+        <input type="text" name="num3">
+        <input type="submit" value="查詢">
+    </form>
+
+    <img src="https://livedoor.blogimg.jp/dqmsl2-11/imgs/4/6/46d85d59.gif" />
+    <p></p>
+        {% if result_list == '沒有中獎コツッ...' %}
+            <h2 style="color:red;">{{ result }}</h2>
+            <p><img src="http://www.keyakizaka46matomerabo.com/wp-content/uploads/TrxBjxQ.jpg" /></p>
+        {% else %}
+            {% for i in result_list %}
+                <h2 style="color:red;">{{ i }}</h2>
+                <p><img src="https://assets.st-note.com/production/uploads/images/44379440/picture_pc_761324a2d5ee3f4cfe553be001f29d29.png?width=800" /></p>
+
+            {% endfor %}
+        {% endif %}
+    {% endblock%}

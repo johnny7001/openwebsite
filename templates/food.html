@@ -1,0 +1,62 @@
+{% extends 'menuTest.html'%} <!--導入menu模板 -->
+{% block title %} 好食券相關 {% endblock%}
+{% block style %} #tds table,#tds tr,#tds td{border:1px solid #000; {% endblock%}
+    {% block content %}
+
+
+    <h3 align="center">好食券餐廳列表(台南市)</h3>
+    <form action="" method="get">
+        <label>行動支付方式</label>
+            <select name="pay">
+                <option value="default">請選擇...</option>
+                <option value="悠遊卡">悠遊卡</option>
+                <option value="悠遊付">悠遊付</option>
+                <option value="LINE Pay Money">LINE Pay Money</option>
+                <option value="街口">街口</option>
+                <option value="信用卡">信用卡</option>
+                <option value="台灣pay">台灣pay</option>
+                <option value="橘子支付">橘子支付</option>
+                <option value="Pi 拍錢包">Pi 拍錢包</option>
+                <option value="icash pay">icash pay</option>
+            </select>
+            <input type="submit" value="Select"><br>
+        <p></p>
+    </form>
+
+
+<table id="tds">
+    <thead>
+        <tr role="row">
+            <th>店名</th>
+            <th>類型</th>
+            <th>地址</th>
+            <th>行動支付</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in food_list %}
+        <tr>
+            <td>{{ p.shop }}</td>
+            <td>{{ p.category }}</td>
+            <td>{{ p.market_address }}</td>
+            <td>{{ p.pay_list }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+    
+    <div class='pagination'>
+        <span class='page_link'>
+            {% if food_list.has_previous %} <!-- 假如有'上一頁'存在 -->
+            <a href='?page={{ food_list.previous_page_number }}&pay={{ select_pay }}'>上一頁</a> <!-- 顯示上一頁連結 -->
+            {% endif %}
+
+        <span class='current'>
+            頁數:{{ food_list.number }} of {{ food_list.paginator.num_pages }} <!--目前所在頁數/總頁數 -->
+        </span> 
+        {% if food_list.has_next %}
+            <a href='?page={{ food_list.next_page_number }}&pay={{ select_pay }}'>下一頁</a>
+        {% endif %}
+        </span>
+    </div>
+    {% endblock %}
