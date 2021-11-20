@@ -1,0 +1,116 @@
+{% extends 'menuTest.html'%} <!--導入menu模板 -->
+{% block title %} 張貼訊息 {% endblock%}
+{% block style %}
+
+
+#container{
+	margin: 0 auto;
+    padding: 0 25px;
+    max-width: 1220px;
+
+}
+
+.main{
+	padding: 1.5em 0;
+
+
+
+}
+.msg{
+	font-size: 1.75em;
+    padding: 0;
+    margin: 2em 0 0;
+}
+.title{
+    padding-bottom: 6px;
+    line-height: 32px;
+}
+
+input{
+	width:300px;
+	height:35px;
+}
+
+.word{
+	float: left;
+}
+
+.field-box{
+	max-width: 530px;
+	margin-left: 6em;
+}
+
+.field{
+	    display: block;
+    width: 100%;
+    height: 38px;
+    padding: 0 0.5em;
+    border: 1px solid #ddd;
+    background: #fff;
+    margin-bottom: 0.3em;
+}
+
+textarea.field {
+    height: auto;
+    padding: 0.25em 0.5em;
+}
+.send{
+	padding: 4em 0;
+	letter-spacing: 1.5em;
+	text-align:center;
+	width:500px;
+}
+
+{% endblock %}
+
+
+<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+
+
+
+
+
+
+{% block content %}
+
+    <div id='container'>
+    {% if message %}
+        <div class="alert alert-warning">{{ message }}</div>
+    {% endif %}
+
+    <form name="my form" action="/message/posting" method="POST">
+    {% csrf_token %}
+        現在的心情:<br/>
+        {% for m in moods %} <!--依序列出所有心情  radio=單選按鈕 -->
+        <input type="radio" name="mood" value="{{ m.status }}" />{{ m.status }}
+        {% endfor %}
+        <br/>
+        心情留言板:<br/>
+        <textarea name="user_post" rows=3 cols=70></textarea><br/> <!--網頁欄寬3, 3個欄位塞買一排 -->
+        <label for="user_id">你的暱稱:</label>
+        <input id="user_id" type="text" name="user_id" />
+        <label for="user_pass">張貼/刪除密碼:</label>
+        <input id="user_pass" type="password" name="user_pass" /><br/>
+        <input type="submit" value="張貼" />
+        <input type="reset" value="清除重填" />
+    </form>
+
+    </div>
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

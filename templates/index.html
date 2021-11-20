@@ -1,9 +1,27 @@
 {% extends 'menuTest.html'%} <!--導入menu模板 -->
-{% block title %} 爽啊刺啊 {% endblock %}
+{% block title %} 主頁面 {% endblock %}
 
     {% block content %}
+<div class="containser">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-heading-default">
+            <div class="panel-heading" align="center">
+                <h3>網站</h3>
+            </div>
+        </div>
+    </div>
+</div>
 
-
+{% if username %}
+    歡迎: {{ username }}
+{% else %}
+    沒有session到username
+{% endif %}
+</div>
         <font style="font-size:50px;" >國旅券最新相關</font>
         <p></p>
 <!--        <a href="/travel/" style="font-size:30px;height:300px;">立即查詢!!</a>-->

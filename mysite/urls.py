@@ -18,25 +18,37 @@ from django.urls import path
 from shop.views import index
 from news.views import news
 from shop.views import shop
-from message.views import message
+from message.views import message, listing, posting, contact, post2db
 from food.views import food
 from food.views import checknum
 from food.views import foodpanda
 from sakamichi.views import sakamichi
-from travel.views import travel, index_travel, kkdayTaiwan
+from travel.views import travel, index_travel, kkdayTaiwan, login, logout
+from django.conf.urls import include
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('product/', index), #導入product裡面的index
+    path('login/', login),
+    path('logout/', logout),
     path('', index_travel),
-    path('', index),
     path('news/', news),
     path('shop/', shop),
     path('message/', message),
+    path('message/list', listing),
+    path('message/posting', posting),
+    path('message/contact', contact),
+    path('message/post2db', post2db),
+    path('message/list/<int:pid>/<str:del_pass>', listing),
     path('food/', food),
     path('food/ticket5', checknum),
     path('food/foodpanda', foodpanda),
     path('sakamichi/', sakamichi),
     path('travel/', travel), #klook
     path('travel/kkday', kkdayTaiwan),
+    path('captcha/', include('captcha.urls')),
+
+
+
+
 
 ]

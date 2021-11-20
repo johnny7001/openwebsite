@@ -22,6 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-%vu*fdw8e=y68h6e^g+u0^a_z7!*bcjvf2abnqn03jkoh314v8'
+GOOGLE_RECAPTCHA_SECRET_KEY = '6Lecr0cdAAAAAMHWCONLszGi8dMIp8snkByDlL5r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
     'food',
     'sakamichi',
     'travel',
+    'captcha',
 ]
 
 MIDDLEWARE = [

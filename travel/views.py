@@ -1,16 +1,38 @@
-from django.shortcuts import render
-from .models import Klook, Kkday
-
+from django.shortcuts import render, redirect
+from .models import Klook, Kkday, User
+from mysite import forms
 # Create your views here.
 from django.core.paginator import PageNotAnInteger, EmptyPage, Paginator
+from django.contrib.sessions.models import Session #處理session
+from django.contrib import messages #處理訊息框架 Messages Framework
 from itertools import chain #可以將多個queryset結合成同一個
 
-def index_travel(request):
-    journey_list = Klook.objects.all().order_by('id')[:8] #取最新3筆資料
-    kkday_list = Kkday.objects.all().order_by('id')[:8]
-    content = {'journey_list': journey_list, 'kkday_list': kkday_list}
-    return render(request, 'index.html', content)
 
+# def index(request, pid=None, del_pass=None): #首頁，確認cookie
+#     if request.session.test_cookie_worked(): #檢查客戶端瀏覽器是否可以接受cookie
+#         request.session.delete_test_cookie()
+#         message = "cookie supported!"
+#     else:
+#         message = "cookie not supported!"
+#     request.session.set_test_cookie()
+#
+#     return render(request, 'login.html', locals())
+
+def index_travel(request):
+    if 'username' in request.session and 'useremail' in request.session:
+        username = request.session['username']
+        useremail = request.session['useremail']
+
+        journey_list = Klook.objects.all().order_by('id')[:8] #取最新3筆資料
+        kkday_list = Kkday.objects.all().order_by('id')[:8]
+        # content = {'journey_list': journey_list, 'kkday_list': kkday_list}
+        # return render(request, 'index.html', content)
+    else:
+        journey_list = Klook.objects.all().order_by('id')[:8]  # 取最新3筆資料
+        kkday_list = Kkday.objects.all().order_by('id')[:8]
+        # content = {'journey_list': journey_list, 'kkday_list': kkday_list}
+        # return render(request, 'index.html', content)
+    return render(request, 'index.html', locals())
 
 
 class CustomPaginator(Paginator):
@@ -189,3 +211,45 @@ def kkdayTaiwan(request):
         content = {'taiwan_list': pageContent, 'journey': goods, 'startp': startP, 'endp': endP, 's_city': choice_city}
 
         return render(request, 'kkday.html', content)
+
+
+
+def login(request):
+    if request.session.test_cookie_worked(): #檢查客戶端瀏覽器是否可以接受cookie
+        request.session.delete_test_cookie()
+        message = "cookie supported!"
+    else:
+        message = "cookie not supported!"
+    request.session.set_test_cookie()
+
+    if request.method == 'POST':
+        login_form = forms.LoginForm(request.POST)
+        if login_form.is_valid():
+            login_name = request.POST['username'].strip()
+            login_password = request.POST['password']
+            try:
+                user = User.objects.get(name=login_name) #判斷是否已經是會員
+                if user.password == login_password:
+                    request.session['username'] = user.name
+                    request.session['useremail'] = user.email
+                    messages.add_message(request, messages.SUCCESS, '成功登入了')
+                    return redirect('/') #登入後回到首頁
+                else:
+                    messages.add_message(request, messages.WARNING,"密碼錯誤，你重新輸入...")
+            except:
+                messages.add_message(request, messages.WARNING, "找不到使用者")
+        else:
+            messages.add_message(request, messages.INFO, "請檢查輸入的欄位內容")
+    else:
+        login_form = forms.LoginForm()
+
+    return render(request, 'login.html', locals())
+
+
+def logout(request):
+    #如果是登入狀態, 就刪除session並且導回登入頁面
+    if 'username' in request.session:
+        Session.objects.all().delete()
+        return redirect('/login/')
+    return redirect('/')
+

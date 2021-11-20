@@ -11,6 +11,30 @@ from django.db import models
 #Kkday_liouciou, Kkday_matzu, Kkday_miaoli, Kkday_nantou, Kkday_newtaipeicity, Kkday_penghu, Kkday_pingtung, Kkday_pingxi, Kkday_taichung, Kkday_tainan,
 #Kkday_taipei, Kkday_taitung, Kkday_taoyuan, Kkday_yilan, Kkday_yunlin
 
+class User(models.Model):
+    name = models.CharField(max_length=20, null=False)
+    email = models.EmailField()
+    password = models.CharField(max_length=20, null=False)
+    enabled = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.name
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class Kkday(models.Model):
     title = models.CharField(max_length=255)
@@ -30,14 +54,16 @@ class Kkday(models.Model):
 
 
 class Klook(models.Model):
-    title = models.CharField(max_length=255)
-    star = models.FloatField(blank=True, null=True)
-    market_price = models.FloatField(blank=True, null=True)
-    selling_price = models.FloatField()
-    img_url = models.CharField(max_length=255)
-    data_url = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, verbose_name='方案名稱') #verbose_name = 將admin後台的欄位名稱進行設定
+    star = models.FloatField(blank=True, null=True, verbose_name='評分')
+    market_price = models.FloatField(blank=True, null=True, verbose_name='市價')
+    selling_price = models.FloatField(verbose_name='售價')
+    img_url = models.CharField(max_length=255, verbose_name='圖片鏈結')
+    data_url = models.CharField(max_length=255, verbose_name='方案鏈結')
 
     class Meta:
         managed = False
         db_table = 'klook'
+
+
 
