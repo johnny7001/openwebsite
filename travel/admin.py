@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Klook, Kkday, User
+from .models import Klook, Kkday
 
 class PostKlook(admin.ModelAdmin):
     list_display = ('title', 'star', 'market_price', 'selling_price', 'img_url', 'data_url')
@@ -14,6 +14,4 @@ class PostKkday(admin.ModelAdmin):
 
 admin.site.register(Klook, PostKlook)
 admin.site.register(Kkday, PostKkday)
-admin.site.register(User)
-
 

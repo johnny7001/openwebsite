@@ -23,7 +23,8 @@ from food.views import food
 from food.views import checknum
 from food.views import foodpanda
 from sakamichi.views import sakamichi
-from travel.views import travel, index_travel, kkdayTaiwan, login, logout
+from travel.views import travel, kkdayTaiwan, kkday_onepage
+from userdata.views import index_travel, login, logout, userinfo, userpost, postcheck
 from django.conf.urls import include
 
 urlpatterns = [
@@ -31,6 +32,9 @@ urlpatterns = [
     path('login/', login),
     path('logout/', logout),
     path('', index_travel),
+    path('userinfo/', userinfo),
+    path('diary_check/', postcheck),
+    path('diary/', userpost),
     path('news/', news),
     path('shop/', shop),
     path('message/', message),
@@ -45,10 +49,8 @@ urlpatterns = [
     path('sakamichi/', sakamichi),
     path('travel/', travel), #klook
     path('travel/kkday', kkdayTaiwan),
+    path('kkday_onepage/', kkday_onepage),
     path('captcha/', include('captcha.urls')),
-
-
-
 
 
 ]

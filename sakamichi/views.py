@@ -5,7 +5,7 @@ from .models import SakuYoutube
 from django.core.paginator import PageNotAnInteger, EmptyPage, Paginator
 
 def sakamichi(request):
-
+    username = request.user.username
     mv_list = SakuYoutube.objects.all().order_by('id')
 
     paginator = Paginator(mv_list, 20)  # 一頁顯示20筆
@@ -20,6 +20,6 @@ def sakamichi(request):
     except EmptyPage:
         pageContent = paginator.page(paginator.num_pages)  # if參數為空值, 跳到最後一頁
 
-    content = {'mv_list': pageContent}  # dict
+    content = {'mv_list': pageContent, 'username':username}  # dict
 
     return render(request, 'sakamichi.html', content)

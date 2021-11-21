@@ -40,8 +40,17 @@
           <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
       {% if username %}
-        <li class="nav-item">
-          <a class="nav-link" href="#">Blog</a>
+         <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown0" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            使用者專區
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/userinfo">使用者資訊</a></li>
+            <li><a class="dropdown-item" href="/diary/">記錄</a></li>
+            <li><a class="dropdown-item" href="/diary_check/">查看記錄</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
         </li>
 
         <li class="nav-item dropdown">
@@ -84,18 +93,17 @@
             <li><a class="dropdown-item" href="/message/list">瀏覽訊息</a></li>
             <li><a class="dropdown-item" href="/message/posting">張貼訊息</a></li>
             <li><a class="dropdown-item" href="/message/post2db">張貼訊息(僅表單)</a></li>
-            <li><a class="dropdown-item" href="/message/contact">聯絡管理員</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link"  href="/">登出</a>
+          <a class="nav-link"  href="/logout/">登出</a>
         </li>
         {% else %}
         <li class="nav-item">
-          <a class="nav-link" href="#">登入</a>
+          <a class="nav-link" href="/login/">登入</a>
         </li>
         {% endif %}
         <li class="nav-item">
@@ -103,10 +111,10 @@
         </li>
 
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+<!--      <form class="d-flex">-->
+<!--        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
+<!--        <button class="btn btn-outline-success" type="submit">Search</button>-->
+<!--      </form>-->
     </div>
   </div>
 

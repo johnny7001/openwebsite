@@ -1,6 +1,6 @@
 from django import forms #表單功能
 from captcha.fields import CaptchaField
-
+from userdata.models import Diary
 from message.models import Post
 class ContactForm(forms.Form):
     CITY = [
@@ -37,6 +37,22 @@ class LoginForm(forms.Form):
 
 
 
+
+class DateInput(forms.DateInput): #日期表單
+    input_type = 'date'
+
+class DiaryForm(forms.ModelForm):
+    class Meta:
+        model = Diary
+        fields = ['budget', 'weight', 'note', 'ddate']
+        widgets = {'ddate': DateInput(),} #wedgets=附件
+
+    def __init__(self, *args, **kwargs):
+        super(DiaryForm, self).__init__(*args, **kwargs)
+        self.fields['budget'].label = '今日花費(元)'
+        self.fields['weight'].label = '今日體重(kg)'
+        self.fields['note'].label = '心情留言'
+        self.fields['ddate'].label = '日期'
 
 
 

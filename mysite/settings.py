@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'sakamichi',
     'travel',
     'captcha',
+    'userdata',
 ]
 
 MIDDLEWARE = [

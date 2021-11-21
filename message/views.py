@@ -12,7 +12,7 @@ import json
 
 # Create your views here.
 def message(request):
-
+    username = request.user.username
     if "title" in request.POST:
         title = request.POST['title']
         email = request.POST['email']
@@ -24,6 +24,7 @@ def message(request):
     return render(request, 'message.html', locals()) #locals=所有的內容用字典的方式回傳
 
 def user_login(request):
+
     try:
         urid = request.GET['user_id']
         urpass = request.GET['user_pass']
@@ -37,6 +38,7 @@ def user_login(request):
     return render(request, 'message.html', locals())
 
 def posting(request):
+    username = request.user.username
     moods = Mood.objects.filter().all() #全抓
     try:
         user_id = request.POST['user_id']
@@ -70,12 +72,14 @@ def posting(request):
 
 
 def listing(request):
+    username = request.user.username
     posts = Post.objects.filter(enabled=True).order_by('-pub_time')[:150]
     moods = Mood.objects.all()
 
     return render(request, 'listing.html', locals())
 
 def contact(request):
+    username = request.user.username
     if request.method == 'POST': #判斷傳進來的內容是否為POST
         form = forms.ContactForm(request.POST)
         if form.is_valid(): #檢查表單各欄位內容是否輸入正確
@@ -88,6 +92,7 @@ def contact(request):
     return render(request, 'contact.html', locals())
 
 def post2db(request):
+    username = request.user.username
     if request.method == 'POST':
         post_form = forms.PostForm(request.POST)
         if post_form.is_valid(): #檢查表單各欄位內容是否輸入正確

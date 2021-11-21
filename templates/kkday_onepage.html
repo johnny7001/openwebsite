@@ -1,0 +1,45 @@
+{% extends 'menuTest.html'%}<!--導入menu模板 -->
+{% block title %} KLOOK國旅券 {% endblock%}
+
+    {% block content %}
+        <font style="font-size:50px;color:#26bec9;" >kkday專區</font>
+    <a href="https://www.kkday.com/zh-tw"><img src='/static/img/kkdaylogo.jpg' width="50px" height="50px" style="padding-down:10px;"></a>
+    <div class='search'>
+        <form action='' method='get'>
+            關鍵字搜尋: <input type='text' name='journey' style="margin-right:50px;"/>
+            輸入旅遊縣市: <input type="text" name="select_city" style="margin-right:50px;" />
+
+                <p></p>
+<p></p>
+            價格: <input type='text' name='startp' />
+                至 <input type='text' name='endp' /><p></p>
+            <input type='submit' value='查詢' />
+        </form>
+    </div>
+
+
+
+
+    <div class='info'>
+    {% for p in taiwan_list %}
+    <div class='infoarea'>
+        <ul>
+            <li>活動:{{p.title}}</li>
+            <li><a href="{{ p.data_url }}" target="_blank"><img src="{{p.img_url}}" width="150px" /></a></li>
+            {% if p.star == None %} <!--假如沒有評分就不顯示 -->
+            {% else%}
+            <li style="color:red;">評分:{{p.star}}</li>
+            {% endif %}
+            <p></p>
+            {% if p.market_price == 0.0 %} <!--假如沒有市價就不顯示 -->
+            {% else%}
+                <li>市價:{{p.market_price}}</li>
+            {% endif %}
+            <li style="color:green;">售價:{{p.selling_price}}</li>
+        </ul>
+    </div>
+    {% endfor %}
+    </div>
+    
+
+    {% endblock%}

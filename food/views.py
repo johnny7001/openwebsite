@@ -8,6 +8,7 @@ import time
 from django.template.loader import render_to_string
 
 def checknum(request):
+    username = request.user.username
     week1 = {
         "國旅券": ["21", "32", "98", "67", "97", "410"],
         "i原券": ["64", "85"],
@@ -87,14 +88,15 @@ def checknum(request):
             else:
                 pass
         if result_list == []:
-            content = {'result_list':'沒有中獎コツッ...'}
+            content = {'result_list':'沒有中獎コツッ...', 'username':username}
             return render(request, 'ticket5.html', content)
         else:
-            content = {'result_list':result_list}
+            content = {'result_list':result_list, 'username':username}
             return render(request, 'ticket5.html', content)
 
     else: #假如都還沒有輸入任何資訊, 先返回頁面
-        return render(request, 'ticket5.html')
+        content = {'username':username}
+        return render(request, 'ticket5.html', content)
 
 
 def food(request):
@@ -118,6 +120,7 @@ def food(request):
 
 
 def foodpanda(request):
+    username = request.user.username
     goods = ""  # 商品名稱
     startP = ""
     endP = ""
@@ -151,6 +154,6 @@ def foodpanda(request):
     except EmptyPage:
         pageContent = paginator.page(paginator.num_pages)  # if參數為空值, 跳到最後一頁
 
-    content = {'rest_list': pageContent}  # dict
+    content = {'rest_list': pageContent, 'username':username}  # dict
 
     return render(request, 'foodpanda.html', content)

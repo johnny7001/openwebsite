@@ -6,34 +6,7 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
-
-#資料庫名稱:清單  Kkday_changhua, Kkday_chiayi, Kkday_greenisland, Kkday_hsinchu, Kkday_hualien, Kkday_kaohsiung, Kkday_keelung, Kkday_kenting, Kkday_kinmen, Kkday_lanyu,
-#Kkday_liouciou, Kkday_matzu, Kkday_miaoli, Kkday_nantou, Kkday_newtaipeicity, Kkday_penghu, Kkday_pingtung, Kkday_pingxi, Kkday_taichung, Kkday_tainan,
-#Kkday_taipei, Kkday_taitung, Kkday_taoyuan, Kkday_yilan, Kkday_yunlin
-
-class User(models.Model):
-    name = models.CharField(max_length=20, null=False)
-    email = models.EmailField()
-    password = models.CharField(max_length=20, null=False)
-    enabled = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.name
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+from django.contrib.auth.models import User
 
 
 class Kkday(models.Model):
