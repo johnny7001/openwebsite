@@ -1,0 +1,103 @@
+{% extends 'menuTest.html'%} <!--導入menu模板 -->
+{% block title %} 網站 {% endblock%}
+{% block style %}
+
+
+#container{
+	margin: 0 auto;
+    padding: 0 25px;
+    max-width: 1220px;
+
+}
+
+.main{
+	padding: 1.5em 0;
+
+
+
+}
+.msg{
+	font-size: 1.75em;
+    padding: 0;
+    margin: 2em 0 0;
+}
+.title{
+    padding-bottom: 6px;
+    line-height: 32px;
+}
+
+input{
+	width:300px;
+	height:35px;
+}
+
+.word{
+	float: left;
+}
+
+.field-box{
+	max-width: 530px;
+	margin-left: 6em;
+}
+
+.field{
+	    display: block;
+    width: 100%;
+    height: 38px;
+    padding: 0 0.5em;
+    border: 1px solid #ddd;
+    background: #fff;
+    margin-bottom: 0.3em;
+}
+
+textarea.field {
+    height: auto;
+    padding: 0.25em 0.5em;
+}
+.send{
+	padding: 4em 0;
+	letter-spacing: 1.5em;
+	text-align:center;
+	width:500px;
+}
+
+{% endblock %}
+
+
+<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+
+
+
+
+
+
+{% block content %}
+
+    <div id='container'>
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading" align="center">
+                    <h3>感謝你的註冊</h3>
+                    <p>接下來請別忘了到註冊的電子郵件中去啟用帳號喔</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

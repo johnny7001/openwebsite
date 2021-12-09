@@ -11,7 +11,7 @@ class ContactForm(forms.Form):
         ['KS', 'Kaohsiung'],
         ['NA', 'Others'],
     ]
-    user_name = forms.CharField(label='你的姓名', max_length=50, initial='守屋麗奈') #initial=預設值
+    user_name = forms.CharField(label='你的姓名', max_length=50, initial='Tseng') #initial=預設值
     user_city = forms.ChoiceField(label='居住城市', choices=CITY) #下拉是選單
     user_school = forms.BooleanField(label='是否在學', required=False) #此欄位不一定要勾選
     user_email = forms.EmailField(label='電子郵件')

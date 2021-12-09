@@ -110,7 +110,7 @@ def city_data(city_name, code): #code = 城市的代碼
 # city_data('pingtung', 'A01-001-00015')
 # #共25縣市
 #
-# # for c in range(19, 25): #迴圈抓取全部縣市
-# #     city_data(city_name[c].replace("-", ""), code[c])
-# #     time.sleep(5)
-# conn.close()
+for c in range(0, 1): #迴圈抓取全部縣市
+    city_data(city_name[c].replace("-", ""), code[c])
+    time.sleep(5)
+conn.close()

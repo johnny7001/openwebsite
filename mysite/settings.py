@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'travel',
     'captcha',
     'userdata',
+    'registration',
 ]
 
 MIDDLEWARE = [
@@ -61,6 +62,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'mysite.urls'
+
+ACCOUNT_ACTIVATION_DAYS = 7
+
 
 TEMPLATES = [
     {
@@ -149,3 +153,14 @@ django_heroku.settings(locals())
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+MAILGUN_ACCESS_KEY = '283ef86a4f13d5826fac15c0b0f25c64-7dcc6512-c85d4013'
+MAILGUN_SERVER_NAME = 'sandboxbc2790780fe244f4b5c0f953bb1b3fd1.mailgun.org'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'theforeverwen@gmail.com'
+EMAIL_HOST_PASSWORD = 'j0932354321'
+EMAIL_POST = 587
+

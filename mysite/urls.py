@@ -51,6 +51,7 @@ urlpatterns = [
     path('travel/kkday', kkdayTaiwan),
     path('kkday_onepage/', kkday_onepage),
     path('captcha/', include('captcha.urls')),
+    path('accounts/', include('registration.backends.default.urls')),
 
 
 ]
