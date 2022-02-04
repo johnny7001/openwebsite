@@ -70,10 +70,10 @@ def travel(request):
         elif len(goods) > 0 and len(startP) == 0 and len(endP) == 0:  # if 沒有填價格
             journey_list = Klook.objects.filter(title__icontains=goods).order_by('-selling_price')  # 過濾出title裡面有包含goods的商品名稱
         else:
-            journey_list = Klook.objects.all().order_by('-id')
+            journey_list = Klook.objects.all().order_by('-id')[:50]
 
     else:
-        journey_list = Klook.objects.all().order_by('-id')  # -price=遞減排序
+        journey_list = Klook.objects.all().order_by('-id')[:50] # -price=遞減排序, 只搜尋50筆資料
 
     current_page = request.GET.get('page')  # 抓取參數=page的值
     if current_page != None:
@@ -154,9 +154,9 @@ def kkdayTaiwan(request):
             taiwan_list = Kkday.objects.filter(selling_price__gte=startP, selling_price__lte=endP).order_by(
                 'id')  # 過濾出title裡面有包含goods的商品名稱
         else:
-            taiwan_list = Kkday.objects.all().order_by('id')
+            taiwan_list = Kkday.objects.all().order_by('id')[:50]
     else:
-        taiwan_list = Kkday.objects.all().order_by('id')
+        taiwan_list = Kkday.objects.all().order_by('id')[:50]
 
 
 

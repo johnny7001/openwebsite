@@ -42,11 +42,16 @@
             {% endif %}
 
         <span class='current'>
-            頁數:{{ mv_list.number }} of {{ mv_list.paginator.num_pages }} <!--目前所在頁數/總頁數 -->
+            {% for i in mv_list.paginator.page_num_range %}
+            <a href="?page={{ i }}">{{ i }}</a>
+            {% endfor %}
         </span>
         {% if mv_list.has_next %}
             <a href='?page={{ mv_list.next_page_number }}'>下一頁</a>
         {% endif %}
         </span>
+            <font style="text-align:right;"> 頁數:{{ mv_list.number }} of {{ mv_list.paginator.num_pages }} <!--目前所在頁數/總頁數 --></font>
     </div>
     {% endblock %}
+
+

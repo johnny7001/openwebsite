@@ -7,6 +7,43 @@ from django.core.paginator import PageNotAnInteger, EmptyPage, Paginator
 import time
 from django.template.loader import render_to_string
 
+
+class CustomPaginator(Paginator):
+    def __init__(self, current_page, max_pager_num, *args, **kwargs):
+        """
+        :param current_page: 當前頁
+        :param max_pager_num:最多顯示的頁碼個數
+        :param args:
+        :param kwargs:
+        :return:
+        """
+        self.current_page = int(current_page)
+        self.max_pager_num = max_pager_num
+        super(CustomPaginator, self).__init__(*args, **kwargs)
+
+    def page_num_range(self):
+        # 當前頁面
+        # self.current_page
+        # 總頁數
+        # self.num_pages
+        # 最多顯示的頁碼個數
+        # self.max_pager_num
+        print(1)
+        if self.num_pages < self.max_pager_num:
+            return range(1, self.num_pages + 1)
+        print(2)
+        part = int(self.max_pager_num / 2)
+        if self.current_page - part < 1:
+            return range(1, self.max_pager_num + 1)
+        print(3)
+        if self.current_page + part > self.num_pages:
+            return range(self.num_pages + 1 - self.max_pager_num, self.num_pages + 1)
+        print(4)
+        return range(self.current_page - part, self.current_page + part + 1)
+
+
+
+
 def checknum(request):
     username = request.user.username
     week1 = {
@@ -133,27 +170,43 @@ def foodpanda(request):
             rest_list = Foodpanda.objects.filter(shopname__icontains=goods).order_by(
                 '-star')  # 過濾出title裡面有包含goods的商品名稱
         else:
-            rest_list = Foodpanda.objects.all().order_by('-star')
+            rest_list = Foodpanda.objects.all().order_by('-star')[:50]
 
     else:
-        rest_list = Foodpanda.objects.all().order_by('-star')  # -price=遞減排序
+        rest_list = Foodpanda.objects.all().order_by('-star')[:50]  # -price=遞減排序
 
     # rest_list = Foodpanda.objects.all().order_by('-star')
     # content = {'rest_list':rest_list}
     # return render(request, 'foodpanda.html', content)
 
-    paginator = Paginator(rest_list, 20)  # 一頁顯示20筆
-    page = request.GET.get('page')  # 抓取參數=page的值
+    paginator = Paginator(rest_list, 10)  # 一頁顯示20筆
+    current_page = request.GET.get('page')  # 抓取參數=page的值
+    if current_page != None:
+        paginator = CustomPaginator(current_page, 11, rest_list, 10)
+        try:
+            pageContent = paginator.page(current_page)
 
-    try:
-        pageContent = paginator.page(page)
+        except PageNotAnInteger:
+            pageContent = paginator.page(1)  # if參數值不為數字, 則跳回第一頁
 
-    except PageNotAnInteger:
-        pageContent = paginator.page(1)  # if參數值不為數字, 則跳回第一頁
+        except EmptyPage:
+            pageContent = paginator.page(paginator.num_pages)  # if參數為空值, 跳到最後一頁
 
-    except EmptyPage:
-        pageContent = paginator.page(paginator.num_pages)  # if參數為空值, 跳到最後一頁
+        content = {'rest_list': pageContent, 'username':username}  # dict
 
-    content = {'rest_list': pageContent, 'username':username}  # dict
+        return render(request, 'foodpanda.html', content)
+    else:
+        current_page = 1  # 假如沒有取得page參數, 就預設頁數在第一頁
+        paginator = CustomPaginator(current_page, 11, rest_list, 10)  # 一頁顯示20筆
+        try:
+            pageContent = paginator.page(current_page)
 
-    return render(request, 'foodpanda.html', content)
+        except PageNotAnInteger:
+            pageContent = paginator.page(1)  # if參數值不為數字, 則跳回第一頁
+
+        except EmptyPage:
+            pageContent = paginator.page(paginator.num_pages)  # if參數為空值, 跳到最後一頁
+
+        content = {'rest_list': pageContent, 'username': username}  # dict
+
+        return render(request, 'foodpanda.html', content)

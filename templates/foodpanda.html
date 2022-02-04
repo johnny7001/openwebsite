@@ -33,11 +33,14 @@
             {% endif %}
 
         <span class='current'>
-            頁數:{{ rest_list.number }} of {{ rest_list.paginator.num_pages }} <!--目前所在頁數/總頁數 -->
+            {% for i in rest_list.paginator.page_num_range %}
+            <a href="?page={{ i }}">{{ i }}</a>
+            {% endfor %}
         </span>
         {% if rest_list.has_next %}
             <a href='?page={{ rest_list.next_page_number }}&panda={{ panda }}'>下一頁</a>
         {% endif %}
         </span>
+        <font style="text-align:right;"> 頁數:{{ rest_list.number }} of {{ rest_list.paginator.num_pages }} <!--目前所在頁數/總頁數 --></font>
     </div>
     {% endblock %}
