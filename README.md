@@ -75,7 +75,7 @@
 * 張貼訊息需要經過管理員從後台審核後才會張貼
 >![GITHUB](img_storage/blog_post.png)
 
-##聯絡管理員
+## 聯絡管理員
 >![GITHUB](img_storage/messageToAdmin.png)
 
 
