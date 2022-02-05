@@ -61,16 +61,19 @@
 
 # 留言板
 
-# 問題回報
+## 問題回報
 * 輸入欄位資料後，可以透過admin後端及mysql查看
 >![GITHUB](img_storage/message.png)
 >![GITHUB](img_storage/message_mysql.png)
 >![GITHUB](img_storage/message_admin.png)
 
-# 瀏覽訊息
-# 張貼訊息
+## 瀏覽訊息
+>![GITHUB](img_storage/blog_page.png)
 
+## 張貼訊息
+>![GITHUB](img_storage/blog_post.png)
 
-#聯絡管理員
+##聯絡管理員
+>![GITHUB](img_storage/messageToAdmin.png)
 
 
