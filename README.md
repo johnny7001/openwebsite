@@ -68,9 +68,11 @@
 >![GITHUB](img_storage/message_admin.png)
 
 ## 瀏覽訊息
+* 可以看到所有使用者張貼的訊息
 >![GITHUB](img_storage/blog_page.png)
 
 ## 張貼訊息
+* 張貼訊息需要經過管理員從後台審核後才會張貼
 >![GITHUB](img_storage/blog_post.png)
 
 ##聯絡管理員
