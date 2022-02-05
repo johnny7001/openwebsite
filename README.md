@@ -10,6 +10,13 @@
 ****
 ## 網頁導覽及功能介紹
 
+## 會員註冊系統
+* 使用者登入頁面
+![GITHUB](img_storage/login_page.png)
+* 需先註冊成員會員，註冊完成後到信箱收取EMAIL並點擊連結啟用帳號。
+![GITHUB](img_storage/register_page.png)
+![GITHUB](img_storage/register_over.png)
+
 ## Home主頁  
 * 上方使用Bootstrap資源的navbar設立導覽列  
 * 內容放置想要主打的熱門商品(從資料庫抓出排序熱賣或最新上架的商品)  
@@ -78,4 +85,6 @@
 ## 聯絡管理員
 >![GITHUB](img_storage/messageToAdmin.png)
 
-
+****
+#未來目標
+* 新增購物車、串接交通部PTX API等功能，實現小型電商平台網站。
