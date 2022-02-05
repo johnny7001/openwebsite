@@ -59,8 +59,18 @@
 * 未來可以新增縣市餐廳索引、餐廳評價等下拉選單供使用者選擇
 >![GITHUB](img_storage/foodpanda_search.png)
 
+# 留言板
+
 # 問題回報
 * 輸入欄位資料後，可以透過admin後端及mysql查看
 >![GITHUB](img_storage/message.png)
 >![GITHUB](img_storage/message_mysql.png)
 >![GITHUB](img_storage/message_admin.png)
+
+# 瀏覽訊息
+# 張貼訊息
+
+
+#聯絡管理員
+
+
