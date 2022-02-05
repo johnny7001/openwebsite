@@ -15,7 +15,7 @@
 ![GITHUB](img_storage/login_page.png)
 * 需先註冊成員會員，註冊完成後到信箱收取EMAIL並點擊連結啟用帳號。
 ![GITHUB](img_storage/register_page.png)
-![GITHUB](img_storage/register_over.png)
+![GITHUB](img_storage/register_finish.png)
 
 ## Home主頁  
 * 上方使用Bootstrap資源的navbar設立導覽列  
